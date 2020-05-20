@@ -14,6 +14,7 @@ public class demoCsv {
         String filePath = "G://job//jobs6.csv";
         String outPath = "G://job//job6.csv";
 
+
 //        Writer out = new OutputStreamWriter(new FileOutputStream(outPath), "utf-8");
 //        CsvWriter cw = new CsvWriter(out,',');
         OutputStream out = new FileOutputStream(outPath);
@@ -63,6 +64,8 @@ public class demoCsv {
                     str[i] = item;
                 }
 //                    System.out.println(str);
+//                System.out.println(Arrays.asList(str));
+                System.out.println(str[7]+"\n"+str[8]);
                 cw.writeRecord(str, true);
 
 //                System.out.println(str);
