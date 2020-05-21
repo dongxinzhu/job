@@ -22,8 +22,6 @@ public class demo01 {
 
         //读表头
         csvReader.readHeaders();
-//        String[] header = csvReader.getHeaders();
-//        String[] gheader = new String[csvReader.getHeaders().length+1];
 
         //标记
         int count = 0;
@@ -50,22 +48,6 @@ public class demo01 {
             csvWriter.writeRecord(line);
         }
 
-
-
-//        //更改表头信息添加salary_min和salary_max
-//        for(int i=0;i<header.length;i++){
-////            System.out.println(s+"\n"+count++);
-//            if(i==11){
-//                gheader[i] =  "job_salary_min";
-//                continue;
-//            }
-//            gheader[i] = header[i];
-//        }
-//        gheader[gheader.length-1] = "job_salary_max";
-
-
-
-//        csvWriter.writeRecord(gheader);
         //关闭资源
         csvReader.close();
         csvWriter.close();

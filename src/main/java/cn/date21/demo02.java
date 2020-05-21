@@ -34,14 +34,7 @@ public class demo02 {
                 continue;
             }
             for (int i=0;i<csvReader.getColumnCount();i++){
-//                if(i==11 && csvReader.get(i).contains("以上")){
-//                    flag = false;
-////                    String p = ".*k以上";
-//////                    line[i] = csvReader.get(i).replaceAll(p, "");
-////                    line[i] = csvReader.get(i).replaceAll("k以上", "");
-////                    split[1] = "";
-//                    continue;
-//                }
+
                 if(i==11){
                     split = csvReader.get(i).split("-");
                     split[0] = split[0].replaceAll(pattern, "");

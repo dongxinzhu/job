@@ -23,8 +23,6 @@ public class demo03 {
         //读表头
         csvReader.readHeaders();
 
-//        boolean flag = true;
-
         String pattern = "(?i)k";
         while (csvReader.readRecord()){
 //            System.out.println(csvReader.get(11));
@@ -37,8 +35,6 @@ public class demo03 {
                 if(i==11){
 
                     split = csvReader.get(i).split("-");
-//                    split[0] = split[0].replaceAll(pattern, "");
-//                    split[1] = split[1].replaceAll(pattern, "");
                     split[1] = split[1].replaceAll("万", "");
                     line[i] = split[0]+'0';
                     continue;
