@@ -7,10 +7,10 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
-public class demo01 {
+public class demo02 {
     public static void main(String[] args) throws IOException {
-        String inPath = "G://job//out//jobout1.csv";
-        String outPath = "G://job//resalary//job-salary1.csv";
+        String inPath = "G://job//out//jobout2.csv";
+        String outPath = "G://job//resalary//job-salary2.csv";
 
         //创建csv读对象
         InputStream in = new FileInputStream(new File(inPath));
@@ -22,22 +22,30 @@ public class demo01 {
 
         //读表头
         csvReader.readHeaders();
-//        String[] header = csvReader.getHeaders();
-//        String[] gheader = new String[csvReader.getHeaders().length+1];
 
-        //标记
-        int count = 0;
+//        boolean flag = true;
 
-        //将salary分开
+        String pattern = "(?i)k";
         while (csvReader.readRecord()){
 //            System.out.println(csvReader.get(11));
             String[] line = new String[csvReader.getColumnCount()+1];
             String[] split = new String[2];
+            if(csvReader.get(11).contains("以上")){
+                continue;
+            }
             for (int i=0;i<csvReader.getColumnCount();i++){
+//                if(i==11 && csvReader.get(i).contains("以上")){
+//                    flag = false;
+////                    String p = ".*k以上";
+//////                    line[i] = csvReader.get(i).replaceAll(p, "");
+////                    line[i] = csvReader.get(i).replaceAll("k以上", "");
+////                    split[1] = "";
+//                    continue;
+//                }
                 if(i==11){
                     split = csvReader.get(i).split("-");
-                    split[0] = split[0].replace("K", "");
-                    split[1] = split[1].replace("K", "");
+                    split[0] = split[0].replaceAll(pattern, "");
+                    split[1] = split[1].replaceAll(pattern, "");
                     line[i] = split[0];
                     continue;
                 }
@@ -48,24 +56,9 @@ public class demo01 {
             line[12] = split[1];
             System.out.println(Arrays.asList(line));
             csvWriter.writeRecord(line);
+//            flag = true;
         }
 
-
-
-//        //更改表头信息添加salary_min和salary_max
-//        for(int i=0;i<header.length;i++){
-////            System.out.println(s+"\n"+count++);
-//            if(i==11){
-//                gheader[i] =  "job_salary_min";
-//                continue;
-//            }
-//            gheader[i] = header[i];
-//        }
-//        gheader[gheader.length-1] = "job_salary_max";
-
-
-
-//        csvWriter.writeRecord(gheader);
         //关闭资源
         csvReader.close();
         csvWriter.close();
